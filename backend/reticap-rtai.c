@@ -4,6 +4,17 @@
 /*                    barkin@unrlabs.org                     */
 /*               http://www.unrlabs.org/barkin               */
 
+/* This is the acquisition backend RTAI+comedi module which acquires
+   single-channel high frequency AP data specifically using a COMEDI
+   supported or Advantech PCL-818 (programmed directly) DAQ Card
+
+   Acquisition is started with the message from userspace and the data
+   acquired message is sent to userspace using a SYN-ACK handshake protocol
+   working over two FIFOs (for data streaming to either side). The acquired
+   data is sent to userspace via the same SYN-ACK handshake protocol however
+   the acquired data itself is sent over an SHM buffer allocated at the time
+   of module initialization. */
+
 //#define DIAGNOSTIC
 #define DAQ_COMEDI
 
